@@ -15,7 +15,8 @@ class TaskList extends Component {
                 </div>
                 <div className="task-body">
                     {this.props.tasks.map((task, index) => (
-                        <TaskItem key={index} taskItem={task} id={index} deleteTask={this.props.deleteTask}/>
+                        <TaskItem key={index} taskItem={task} id={index} deleteTask={this.props.deleteTask}
+                                  editTask={this.props.editTask} toggleTask={this.props.toggleTask}/>
                     ))}
                 </div>
             </div>

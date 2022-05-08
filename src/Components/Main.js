@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import CreateTask from "./CreateTask";
 import TaskList from "./TaskList";
+import styles from './../style/styles.module.scss';
+
 
 const tasks = []
+
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +25,14 @@ class Main extends Component {
         })
     }
 
+    toggleTask = (taskId) => {
+        const taskItem = tasks[taskId];
+        taskItem.isCompleted = !taskItem.isCompleted;
+        this.setState({
+            tasks: tasks
+        })
+    }
+
     deleteTask = (taskId) => {
         tasks.splice(taskId, 1);
         this.setState({
@@ -29,13 +40,24 @@ class Main extends Component {
         })
     }
 
+    editTask = (taskId, task) => {
+        const taskItem = tasks[taskId];
+        taskItem.task = task;
+        this.setState({
+            tasks: tasks
+        })
+    }
+
     render() {
         return (
-            <div>
-                Todos
-                <CreateTask createTask={this.createTask} />
+            <div className={styles.container}>
+                <span>
+                    Todos
+                </span>
+                <CreateTask createTask={this.createTask}/>
                 <br/>
-                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask}/>
+                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} editTask={this.editTask}
+                          toggleTask={this.toggleTask}/>
             </div>
         );
     }
