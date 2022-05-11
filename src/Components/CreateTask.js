@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import styles from './../style/styles.module.scss';
 
 class CreateTask extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class CreateTask extends Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.header}>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text"
                            value={this.state.task}

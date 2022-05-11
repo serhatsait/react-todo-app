@@ -1,16 +1,186 @@
+:root {
+  --dark: #05152E;
+  --darker: #1F2937;
+  --darkest: #001E3C;
+  --grey: #6B7280;
+  --pink: #EC4899;
+  --purple: #8B5CF6;
+  --light: #EEE;
+}
+
+@mixin buttonCss {
+  appearance: none;
+  border: none;
+  outline: none;
+  color: var(--pink);
+  font-size: 20px;
+  font-weight: 700;
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  transition: 0.4s;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+@mixin inputCss($padding) {
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: var(--purple);
+  padding: $padding + px;
+  border-radius: 16px;
+  margin-right: 16px;
+  color: var(--light);
+  font-size: 20px;
+  &::placeholder {
+    color: var(--grey);
+  }
+}
+
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 40px auto;
-  max-width: 600px;
+  background-color: var(--dark);
+  border-radius: 20px;
+  padding: 32px 16px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 
   > span {
-    font-size: 30px;
-    font-weight: bold;
     line-height: 24px;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: 40px;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  > .header {
+    position: relative;
+
+    > form {
+      position: relative;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+
+      input, button {
+        appearance: none;
+        border: none;
+        outline: none;
+        background: none;
+      }
+
+      > input {
+        background-color: var(--darker);
+        padding: 16px;
+        border-radius: 16px;
+        margin-right: 16px;
+        color: var(--light);
+        font-size: 20px;
+        &::placeholder {
+          color: var(--grey);
+        }
+      }
+
+      > button {
+        @include buttonCss;
+      }
+    }
+  }
+
+  > .taskContainer {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+
+    > .taskHeader {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 16px;
+
+      > .title {
+        font-size: 24px;
+        font-weight: 300;
+        color: var(--grey);
+      }
+    }
+
+    > .taskBody {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      > .taskItem {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+
+        > .editForm {
+
+          > form {
+            > input {
+              @include inputCss(16);
+            }
+          }
+        }
+
+        > .editFormButtons {
+          > button {
+            @include buttonCss;
+          }
+        }
+
+        > .toggleTask {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 20px;
+          cursor: pointer;
+
+          > input {
+            @include inputCss(10);
+          }
+
+          > span {
+            line-height: 24px;
+            font-size: 20px;
+            font-weight: 300;
+            color: white;
+          }
+        }
+
+        > .editButton {
+          margin-right: 20px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          > button {
+            @include buttonCss;
+          }
+        }
+      }
+
+    }
   }
 }

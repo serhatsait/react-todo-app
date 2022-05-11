@@ -36,10 +36,10 @@ class TaskItem extends Component {
 
     render() {
         return (
-            <div className={styles.lorem} style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
+            <div className={styles.taskItem} >
                 {this.state.isEditing ? (
                     <>
-                        <div>
+                        <div className={styles.editForm}>
                             <form onSubmit={this.handleSubmit}>
                                 <input
                                     defaultValue={this.state.task}
@@ -48,23 +48,23 @@ class TaskItem extends Component {
                                 />
                             </form>
                         </div>
-                        <div>
+                        <div className={styles.editFormButtons}>
                             <button onClick={this.handleSubmit} type={"submit"}>Kaydet</button>
                             <button onClick={() => this.setEditingState(false)} type={"button"}>Geri</button>
                         </div>
                     </>
                 ) : (
                     <>
-                        <div style={{marginRight: 20, cursor: "pointer"}} onClick={this.toggleTask}>
-                            <input type="checkbox" style={{cursor: "pointer"}} readOnly checked={this.props.taskItem.isCompleted}/>
+                        <div className={styles.toggleTask} onClick={this.toggleTask}>
+                            <input type="checkbox" readOnly checked={this.props.taskItem.isCompleted}/>
                             <span className={this.props.taskItem.isCompleted ? ('completed') : ('not-completed')}>
                             {this.props.taskItem.task}
                             </span>
                         </div>
-                        <div style={{marginRight: 20}}>
+                        <div className={styles.editButton}>
                             <button onClick={() => this.setEditingState(true)}>Güncelle</button>
                         </div>
-                        <div style={{marginRight: 20}}>
+                        <div className={styles.editButton}>
                             <button onClick={this.deleteTask}>Sil</button>
                         </div>
                     </>
