@@ -4,7 +4,7 @@ import TaskList from "./TaskList";
 import styles from './../style/styles.module.scss';
 
 
-const tasks = localStorage.getItem('tasks')? JSON.parse(localStorage.getItem('tasks')) : [];
+const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 
 class Main extends Component {
     constructor(props) {
@@ -15,8 +15,8 @@ class Main extends Component {
     }
 
     createTask = (task) => {
-        if (task.trim === "") {
-            alert('Görev boş olamaz!')
+        if (task.length <= 0) {
+            alert('Boş değer girdiniz!')
             return;
         }
         tasks.push({task, isCompleted: false})
