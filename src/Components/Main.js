@@ -4,7 +4,7 @@ import TaskList from "./TaskList";
 import styles from './../style/styles.module.scss';
 
 
-const tasks = []
+const tasks = localStorage.getItem('tasks')? JSON.parse(localStorage.getItem('tasks')) : [];
 
 class Main extends Component {
     constructor(props) {
@@ -23,6 +23,7 @@ class Main extends Component {
         this.setState({
             tasks: tasks
         })
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     toggleTask = (taskId) => {
@@ -31,6 +32,7 @@ class Main extends Component {
         this.setState({
             tasks: tasks
         })
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     deleteTask = (taskId) => {
@@ -38,6 +40,7 @@ class Main extends Component {
         this.setState({
             tasks: tasks
         })
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     editTask = (taskId, task) => {
@@ -46,6 +49,7 @@ class Main extends Component {
         this.setState({
             tasks: tasks
         })
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     render() {
